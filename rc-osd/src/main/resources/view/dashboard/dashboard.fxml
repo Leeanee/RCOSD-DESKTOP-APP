@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="dashboardRoot"
+            stylesheets="@../../styles/dashboard/dashboard.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.rocs.osd.controller.dashboard.DashboardController">
+
+    <top>
+        <HBox styleClass="topBar">
+            <VBox styleClass="logoContainer">
+                <ImageView fitHeight="45.0" fitWidth="45.0" preserveRatio="true">
+                    <Image url="@../../assets/RC_LOGO.png" />
+                </ImageView>
+            </VBox>
+            <Label styleClass="schoolName" text="Rogationist College" />
+        </HBox>
+    </top>
+
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar">
+            <HBox styleClass="menu-header">
+                <Button onAction="#toggleSidebar" styleClass="sidebarItem">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24">
+                            <Image url="@../../assets/menu.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <VBox styleClass="navContainer" VBox.vgrow="ALWAYS">
+                <Button onAction="#onLoadDashboard" styleClass="sidebarItem" text="Dashboard">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24">
+                            <Image url="@../../assets/dashboard.png" /></ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#onLoadStudent" styleClass="sidebarItem" text="Students">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24">
+                            <Image url="@../../assets/student.png" /></ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#onLoadOffense" styleClass="sidebarItem" text="Offenses">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24">
+                            <Image url="@../../assets/offenses.png" /></ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#onLoadAppeal" styleClass="sidebarItem" text="Appeals">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24">
+                            <Image url="@../../assets/appeal.png" /></ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#onLoadRequest" styleClass="sidebarItem" text="Requests">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24">
+                            <Image url="@../../assets/request.png" /></ImageView>
+                    </graphic>
+                </Button>
+
+                <Pane VBox.vgrow="ALWAYS" />
+
+                <Button fx:id="logoutButton" onAction="#onLogout" styleClass="sidebarItem, logout" text="Logout">
+                    <graphic>
+                        <ImageView fitHeight="24" fitWidth="24">
+                            <Image url="@../../assets/logout.png" /></ImageView>
+                    </graphic>
+                </Button>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="mainContentWrapper" styleClass="mainContentWrapper">
+            <VBox styleClass="contentArea">
+                <HBox styleClass="statsRow">
+                    <VBox styleClass="statCard" HBox.hgrow="ALWAYS">
+                        <Label styleClass="statTitle" text="Total Violations" />
+                        <Label styleClass="statValue" text="200" />
+                        <ProgressBar maxWidth="1200" progress="0.85" />
+                    </VBox>
+                    <VBox styleClass="statCard" HBox.hgrow="ALWAYS">
+                        <Label styleClass="statTitle" text="Pending Appeals" />
+                        <Label styleClass="statValue" text="5" />
+                        <ProgressBar maxWidth="1200" progress="0.25" />
+                    </VBox>
+                    <VBox styleClass="statCard" HBox.hgrow="ALWAYS">
+                        <Label styleClass="statTitle" text="Offenses Today" />
+                        <Label styleClass="statValue" text="25" />
+                        <ProgressBar maxWidth="1200" progress="0.45" />
+                    </VBox>
+                    <VBox styleClass="dateCard" HBox.hgrow="ALWAYS">
+                        <HBox styleClass="dateContent">
+                            <VBox styleClass="dateVerticalStack">
+                                <Label styleClass="dateMonth" text="FEB" />
+                                <Label styleClass="dateDay" text="04">
+                                    <VBox.margin><Insets left="-5.0" top="10.0" /></VBox.margin>
+                                </Label>
+                                <Label styleClass="dateWeek" text="TUE">
+                                    <VBox.margin><Insets top="10.0" /></VBox.margin>
+                                </Label>
+                            </VBox>
+                            <VBox styleClass="dateSeparator" />
+                            <Label styleClass="timeText" text="05:28 PM" />
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <VBox styleClass="panel">
+                    <Label styleClass="panelTitle" text="Most Frequent Offenses Committed" />
+                    <VBox styleClass="offenseList">
+                        <HBox styleClass="offenseRow">
+                            <Label styleClass="offenseName" text="Cheating" />
+                            <ProgressBar maxWidth="1200" progress="0.75" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <HBox styleClass="offenseRow">
+                            <Label styleClass="offenseName" text="Punching" />
+                            <ProgressBar maxWidth="1200" progress="0.65" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <HBox styleClass="offenseRow">
+                            <Label styleClass="offenseName" text="Improper Uniform" />
+                            <ProgressBar maxWidth="1200" progress="0.55" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <HBox styleClass="offenseRow">
+                            <Label styleClass="offenseName" text="Vaping" />
+                            <ProgressBar maxWidth="1200" progress="0.42" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <HBox styleClass="offenseRow">
+                            <Label styleClass="offenseName" text="PDA" />
+                            <ProgressBar maxWidth="1200" progress="0.82" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <VBox styleClass="panel" VBox.vgrow="ALWAYS">
+                    <Label styleClass="panelTitle" text="Recent Violations" />
+                    <TableView VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn text="Student ID" />
+                            <TableColumn text="Student Name" />
+                            <TableColumn text="Level of Offense" />
+                            <TableColumn text="Offense Type" />
+                            <TableColumn text="Date" />
+                        </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

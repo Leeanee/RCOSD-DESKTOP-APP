@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="viewStudentOffenseModal"
+           styleClass="modalContainer"
+           stylesheets="@../../styles/offense/addOffenseModal.css"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.rocs.osd.controller.offense.ViewOffenseModalController">
+
+    <BorderPane>
+        <center>
+            <VBox spacing="10.0">
+                <HBox alignment="CENTER_LEFT" prefHeight="50.0">
+                    <Label text="View Violation" styleClass="subLabelForModal"/>
+                </HBox>
+                <Pane minHeight="2.0" styleClass="linePaneColorGray"/>
+                <GridPane hgap="20.0" vgap="15.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+                    </columnConstraints>
+
+                    <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Student ID:" styleClass="lightLabelForTextField"/>
+                        <TextField fx:id="studentIdField"
+                                   editable="false"
+                                   maxWidth="Infinity"
+                                   styleClass="inputTextFieldOffense"/>
+                    </VBox>
+                    <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="Student Name:" styleClass="lightLabelForTextField"/>
+                        <TextField fx:id="studentNameField"
+                                   editable="false"
+                                   maxWidth="Infinity"
+                                   styleClass="inputTextFieldOffense"/>
+                    </VBox>
+                    <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Label text="Date:" styleClass="lightLabelForTextField"/>
+                        <DatePicker fx:id="datePicker"
+                                    editable="false"
+                                    maxWidth="Infinity"
+                                    styleClass="inputTextFieldOffense"/>
+                    </VBox>
+                    <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Offense Type:" styleClass="lightLabelForTextField"/>
+                        <TextField fx:id="offenseTypeField"
+                                  editable="false"
+                                  maxWidth="Infinity"
+                                  styleClass="inputTextFieldOffense"/>
+                    </VBox>
+                    <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="Level of Offense:" styleClass="lightLabelForTextField"/>
+                        <TextField fx:id="offenseLevelField"
+                                   editable="false"
+                                   maxWidth="Infinity"
+                                   styleClass="inputTextFieldOffense"/>
+                    </VBox>
+                    <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="Action:" styleClass="lightLabelForTextField"/>
+                        <TextField fx:id="actionField"
+                                   editable="false"
+                                   maxWidth="Infinity"
+                                   styleClass="inputTextFieldOffense"/>
+                    </VBox>
+                </GridPane>
+                <VBox spacing="5.0">
+                    <Label text="Remarks:" styleClass="lightLabelForTextField"/>
+                    <TextArea fx:id="remarksField"
+                              editable="false"
+                              wrapText="true"
+                              maxWidth="Infinity"
+                              styleClass="inputTextArea"/>
+                </VBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="editButton"
+                            text="Edit"
+                            styleClass="cancelButton"
+                            onAction="#onEdit"/>
+
+                    <Button fx:id="resolveButton"
+                            text="Resolve"
+                            styleClass="submitOffenseButton"
+                            onAction="#onResolve"/>
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                </HBox>
+            </VBox>
+        </center>
+    </BorderPane>
+</StackPane>

@@ -1,0 +1,212 @@
+package org.rocs.osd.data.dao.enrollment.impl;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.rocs.osd.data.connection.ConnectionHelper;
+import org.rocs.osd.data.dao.enrollment.EnrollmentDao;
+import org.rocs.osd.model.department.Department;
+import org.rocs.osd.model.enrollment.Enrollment;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
+@ExtendWith({MockitoExtension.class})
+class EnrollmentDaoImplTest {
+
+    @Mock
+    private Connection connection;
+    @Mock
+    private PreparedStatement preparedStatement;
+    @Mock
+    private ResultSet resultSet;
+
+    private EnrollmentDao enrollmentDao;
+
+    private static MockedStatic<ConnectionHelper> connectionHelper;
+
+    @BeforeEach
+    public void setUp() throws SQLException {
+        connectionHelper = Mockito.mockStatic(ConnectionHelper.class);
+        connectionHelper.when(ConnectionHelper::getConnection).thenReturn(this.connection);
+        Mockito.when(this.connection.prepareStatement(ArgumentMatchers.anyString())).thenReturn(this.preparedStatement);
+        enrollmentDao = new EnrollmentDaoImpl();
+
+    }
+    @AfterEach
+    public void tearDown() {
+        connectionHelper.close();
+    }
+
+    @Test
+    void testFindListOfEnrollmentsByStudentIdReturnListOfEnrollmentOfStudent() throws SQLException{
+        when(this.preparedStatement.executeQuery()).thenReturn(this.resultSet);
+        when(this.resultSet.next()).thenReturn(true).thenReturn(true).thenReturn(false);
+
+        when(this.resultSet.getLong("enrollmentID")).thenReturn(1L, 2L);
+        when(this.resultSet.getString("schoolYear")).thenReturn("2024-2025", "2025-2026");
+        when(this.resultSet.getString("studentLevel")).thenReturn("Grade 8", "Grade 9");
+        when(this.resultSet.getString("section")).thenReturn("St. Hannibal", "St. Anthony");
+        when(this.resultSet.getString("studentID")).thenReturn("JHS-0001", "JHS-0001");
+        when(this.resultSet.getLong("disciplinaryStatusID")).thenReturn(1L, 2L);
+        when(this.resultSet.getLong("personID")).thenReturn(1L,1L);
+        when(this.resultSet.getString("address")).thenReturn("Buho","Buho");
+        when(this.resultSet.getString("studentDepartmentID")).thenReturn("JHS","JHS");
+        when(this.resultSet.getString("studentType")).thenReturn("Intern", "Intern");
+        List<Enrollment> result = enrollmentDao.findEnrollmentsByStudentId("JHS-0001");
+
+        assertNotNull(result);
+        assertEquals(2, result.size());
+    }
+    @Test
+    void testFindEnrollmentByStudentIdReturnEnrollment() throws SQLException{
+        when(this.preparedStatement.executeQuery()).thenReturn(this.resultSet);
+        when(this.resultSet.next()).thenReturn(true);
+        when(this.resultSet.getLong("enrollmentID")).thenReturn(1L);
+
+        long result = enrollmentDao.findEnrollmentIdByStudentId("JHS-0001");
+
+        assertEquals(1L, result);
+    }
+    @Test
+    void TestFindAllLatestEnrollments()throws SQLException {
+        when(this.preparedStatement.executeQuery()).thenReturn(this.resultSet);
+        when(this.resultSet.next()).thenReturn(true).thenReturn(true).thenReturn(false);
+
+        when(this.resultSet.getLong("enrollmentID")).thenReturn(1L, 2L);
+        when(this.resultSet.getString("studentLevel")).thenReturn("Grade-8", "Grade-9");
+        when(this.resultSet.getString("section")).thenReturn("St. Hannibal", "St. Anthony");
+        when(this.resultSet.getString("department")).thenReturn("JHS", "JHS");
+        when(this.resultSet.getString("schoolYear")).thenReturn("2024-2025", "2025-2026");
+
+        when(this.resultSet.getString("studentID")).thenReturn("JHS-0001", "JHS-0002");
+        when(this.resultSet.getLong("personID")).thenReturn(1L, 2L);
+        when(this.resultSet.getString("address")).thenReturn("Address1", "Address2");
+        when(this.resultSet.getString("firstName")).thenReturn("Juan", "Maria");
+        when(this.resultSet.getString("lastName")).thenReturn("Dela Cruz", "Santos");
+        when(this.resultSet.getString("middleName")).thenReturn("A", "B");
+        when(this.resultSet.getString("studentType")).thenReturn("Intern", "Intern");
+        List<Enrollment> result = enrollmentDao.findAllLatestEnrollments();
+
+        assertNotNull(result);
+        assertEquals(2, result.size());
+
+        Enrollment first = result.get(0);
+        assertEquals(1L, first.getEnrollmentId());
+        assertEquals("Grade-8", first.getStudentLevel());
+        assertEquals("St. Hannibal", first.getSection());
+
+        assertNotNull(first.getStudent());
+        assertEquals("JHS-0001", first.getStudent().getStudentId());
+        assertEquals("Juan", first.getStudent().getFirstName());
+        assertEquals("Dela Cruz", first.getStudent().getLastName());
+
+        Enrollment second = result.get(1);
+        assertEquals(2L, second.getEnrollmentId());
+        assertEquals("Grade-9", second.getStudentLevel());
+        assertEquals("St. Anthony", second.getSection());
+
+        assertNotNull(second.getStudent());
+        assertEquals("JHS-0002", second.getStudent().getStudentId());
+        assertEquals("Maria", second.getStudent().getFirstName());
+        assertEquals("Santos", second.getStudent().getLastName());
+    }
+
+    @Test
+    void testFindLatestEnrollmentsByStudentInfo () throws SQLException{
+        when(this.preparedStatement.executeQuery()).thenReturn(this.resultSet);
+        when(this.resultSet.next()).thenReturn(true).thenReturn(true).thenReturn(false);
+
+        when(this.resultSet.getLong("enrollmentID")).thenReturn(1L, 2L);
+        when(this.resultSet.getString("studentLevel")).thenReturn("Grade-8", "Grade-9");
+        when(this.resultSet.getString("section")).thenReturn("St. Hannibal", "St. Anthony");
+        when(this.resultSet.getString("department")).thenReturn("JHS", "JHS");
+        when(this.resultSet.getString("schoolYear")).thenReturn("2024-2025", "2025-2026");
+
+        when(this.resultSet.getString("studentID")).thenReturn("JHS-0001", "JHS-0002");
+        when(this.resultSet.getLong("personID")).thenReturn(1L, 2L);
+        when(this.resultSet.getString("address")).thenReturn("Address1", "Address2");
+        when(this.resultSet.getString("firstName")).thenReturn("Juan", "Maria");
+        when(this.resultSet.getString("lastName")).thenReturn("Dela Cruz", "Santos");
+        when(this.resultSet.getString("middleName")).thenReturn("A", "B");
+        when(this.resultSet.getString("studentType")).thenReturn("Intern", "Intern");
+        List<Enrollment> result = enrollmentDao.findLatestEnrollmentsByStudentInfo("Juan A Dela Cruz");
+
+        assertNotNull(result);
+        assertEquals(2, result.size());
+
+        Enrollment first = result.get(0);
+        assertEquals(1L, first.getEnrollmentId());
+        assertEquals("Grade-8", first.getStudentLevel());
+        assertEquals("St. Hannibal", first.getSection());
+
+        assertNotNull(first.getStudent());
+        assertEquals("JHS-0001", first.getStudent().getStudentId());
+        assertEquals("Juan", first.getStudent().getFirstName());
+        assertEquals("Dela Cruz", first.getStudent().getLastName());
+
+        Enrollment second = result.get(1);
+        assertEquals(2L, second.getEnrollmentId());
+        assertEquals("Grade-9", second.getStudentLevel());
+        assertEquals("St. Anthony", second.getSection());
+
+        assertNotNull(second.getStudent());
+        assertEquals("JHS-0002", second.getStudent().getStudentId());
+        assertEquals("Maria", second.getStudent().getFirstName());
+        assertEquals("Santos", second.getStudent().getLastName());
+    }
+
+
+    @Test
+    void testFindEnrollmentsByStudentLevelAndName() throws SQLException{
+        when(this.preparedStatement.executeQuery()).thenReturn(this.resultSet);
+        when(this.resultSet.next()).thenReturn(true).thenReturn(false);
+
+        when(this.resultSet.getLong("enrollmentID")).thenReturn(1L);
+        when(this.resultSet.getString("studentLevel")).thenReturn("Grade-8");
+        when(this.resultSet.getString("section")).thenReturn("St. Hannibal");
+        when(this.resultSet.getString("department")).thenReturn("JHS");
+        when(this.resultSet.getString("schoolYear")).thenReturn("2024-2025");
+
+        when(this.resultSet.getString("studentID")).thenReturn("JHS-0001");
+        when(this.resultSet.getLong("personID")).thenReturn(1L);
+        when(this.resultSet.getString("address")).thenReturn("Address1");
+        when(this.resultSet.getString("firstName")).thenReturn("Juan");
+        when(this.resultSet.getString("lastName")).thenReturn("Dela Cruz");
+        when(this.resultSet.getString("middleName")).thenReturn("A");
+        when(this.resultSet.getString("studentType")).thenReturn("Intern");
+        Enrollment result = enrollmentDao.findEnrollmentsByStudentLevelAndName(
+                "Grade-8",
+                "Juan",
+                "A",
+                "Dela Cruz"
+                );
+
+        assertNotNull(result);
+
+        assertEquals(1L, result.getEnrollmentId());
+        assertEquals("Grade-8", result.getStudentLevel());
+        assertEquals("St. Hannibal", result.getSection());
+        assertEquals(Department.JHS, result.getDepartment());
+        assertEquals("2024-2025", result.getSchoolYear());
+        assertEquals("JHS-0001", result.getStudent().getStudentId());
+        assertEquals(1L, result.getStudent().getPersonID());
+        assertEquals("Address1", result.getStudent().getAddress());
+        assertEquals("Juan", result.getStudent().getFirstName());
+        assertEquals("A", result.getStudent().getMiddleName());
+        assertEquals("Dela Cruz", result.getStudent().getLastName());
+        assertEquals("Intern", result.getStudent().getStudentType());
+    }
+}

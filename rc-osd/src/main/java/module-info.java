@@ -1,0 +1,26 @@
+module org.rocs.osd {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires java.logging;
+    requires java.sql;
+    requires com.oracle.database.jdbc;
+    requires org.slf4j;
+    requires jasperreports;
+    requires commons.beanutils;
+    requires java.desktop;
+    requires jbcrypt;
+
+    opens org.rocs.osd.controller.login to javafx.fxml;
+    opens org.rocs.osd.controller.dashboard to javafx.fxml;
+    opens org.rocs.osd.controller.offense to javafx.fxml;
+    opens org.rocs.osd.controller.appeal to javafx.fxml;
+    opens org.rocs.osd.controller.student to javafx.fxml;
+    opens org.rocs.osd.controller.request to javafx.fxml;
+    opens org.rocs.osd.controller.dialog to javafx.fxml;
+
+    opens org.rocs.osd.data.dto.student.report to commons.beanutils;
+
+    exports org.rocs.osd;
+    exports org.rocs.osd.data.dto.student.report;
+}
+

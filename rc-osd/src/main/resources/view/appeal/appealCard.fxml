@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="cardRoot"
+      styleClass="requestCard"
+      stylesheets="@../../styles/appeal/appeal.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.rocs.osd.controller.appeal.AppealCardController">
+
+    <HBox alignment="TOP_LEFT">
+        <VBox styleClass="infoSection" HBox.hgrow="ALWAYS">
+            <HBox styleClass="labelRow">
+                <Label styleClass="boldLabel" text="Student ID: " />
+                <Label fx:id="studentIdLabel" styleClass="dataLabel" />
+            </HBox>
+            <HBox styleClass="labelRow">
+                <Label styleClass="boldLabel" text="Name: " />
+                <Label fx:id="studentNameLabel" styleClass="dataLabel"/>
+            </HBox>
+
+            <VBox fx:id="expandedSection" managed="false" styleClass="expandedSection" visible="false">
+                <HBox styleClass="labelRow">
+                    <Label styleClass="boldLabel" text="Offense: " />
+                    <Label fx:id="offenseLabel" styleClass="dataLabel"/>
+                </HBox>
+
+                <Label styleClass="boldLabel" text="Reason for Appeal: " />
+                <Label fx:id="reasonLabel" styleClass="reasonText" wrapText="true" />
+
+                <VBox spacing="2" styleClass="commentContainer">
+                    <Label styleClass="boldLabel" text="Comment:" />
+                    <TextArea fx:id="commentArea" prefHeight="50.0" promptText="Enter comment..." styleClass="commentTextArea" wrapText="true" />
+
+                    <HBox fx:id="errorBannerContainer" managed="false" visible="false" styleClass="inlineErrorBar" alignment="CENTER_LEFT" spacing="10">
+                        <Label fx:id="inlineErrorText" styleClass="inlineErrorLabel" wrapText="true" />
+                    </HBox>
+                </VBox>
+
+                <HBox fx:id="actionBar" alignment="CENTER_RIGHT" styleClass="actionBarContainer">
+                    <HBox styleClass="actionBar">
+                        <Button fx:id="denyButton" onAction="#handleAppealDeny" styleClass="denyButton" text="Deny" />
+                        <Button fx:id="approveButton" onAction="#handleAppealApprove" styleClass="approveButton" text="Approve" />
+                    </HBox>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <Button fx:id="arrowButton" onAction="#toggleExpansion" styleClass="arrowButton">
+            <graphic>
+                <ImageView fx:id="arrowIcon" fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <Image url="@../../assets/rightButton.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+
+    <VBox fx:id="popupBox" alignment="CENTER" managed="false" visible="false" styleClass="popupBox">
+        <Label fx:id="popupLabel" style="-fx-font-weight: bold; -fx-text-fill: #000000;"/>
+    </VBox>
+</VBox>

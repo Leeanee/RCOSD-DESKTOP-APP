@@ -1,0 +1,216 @@
+.rootContainer {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 25;
+}
+
+.mainWrapper {
+    -fx-spacing: 0;
+}
+
+.tabContainer {
+    -fx-spacing: 0;
+}
+
+.tabButton {
+    -fx-background-color: white;
+    -fx-border-color: #DCDCDC;
+    -fx-border-width: 1 1 0 1;
+    -fx-background-radius: 5 5 0 0;
+    -fx-border-radius: 5 5 0 0;
+    -fx-padding: 10 25;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-translate-y: 1;
+}
+
+.tabButton:pressed {
+    -fx-background-color: #C8CCFF;
+    -fx-translate-y: 2;
+}
+
+.tabButton:focused {
+    -fx-border-color: navy #DCDCDC #DCDCDC #DCDCDC;
+    -fx-border-width: 1 1 0 1;
+}
+
+
+.tab-active {
+    -fx-background-color: #DDE0FF;
+    -fx-text-fill: #000000;
+    -fx-border-color: #DCDCDC #DCDCDC navy #DCDCDC;
+}
+
+.contentContainer {
+    -fx-border-color: #DCDCDC;
+    -fx-border-width: 1;
+    -fx-background-color: white;
+}
+
+.listContainer {
+    -fx-background-color: transparent;
+    -fx-spacing: 0;
+}
+
+.requestCard {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #DCDCDC transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 20 15;
+}
+
+.infoSection {
+    -fx-spacing: 8;
+}
+
+.labelRow {
+    -fx-spacing: 5;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.expandedSection {
+    -fx-spacing: 12;
+    -fx-padding: 10 0 0 0;
+}
+
+.commentContainer {
+    -fx-padding: 5 0 0 0;
+}
+
+.commentTextArea {
+    -fx-background-color: white;
+    -fx-border-color: #DCDCDC;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.commentTextArea .content {
+    -fx-background-color: white;
+}
+
+.commentTextArea:focused {
+    -fx-border-color: navy;
+}
+
+/* =========================================================================
+   UPDATED INLINE ERROR BAR DESIGN (Matches flat red strip under comment area)
+   ========================================================================= */
+.inlineErrorBar {
+    -fx-background-color: #ff9494; /* Soft pastel solid red background */
+    -fx-border-color: #ff3333;     /* Sharp red container border bounds */
+    -fx-border-width: 1px;
+    -fx-padding: 6px 12px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.inlineErrorLabel {
+    -fx-text-fill: #1a1a1a;        /* Darker gray/black clear text color */
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+.actionBarContainer {
+    -fx-padding: 10 0 0 0;
+}
+
+.actionBar {
+    -fx-spacing: 10;
+}
+
+.headerText {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.boldLabel {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.dataLabel {
+    -fx-font-size: 15px;
+    -fx-text-fill: #333333;
+}
+
+.reasonText {
+    -fx-font-size: 15px;
+    -fx-text-fill: #333333;
+}
+
+.approveButton {
+    -fx-background-color: navy;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 18;
+    -fx-cursor: hand;
+}
+
+.approveButton:hover {
+    -fx-background-color: blue;
+}
+
+.denyButton {
+    -fx-background-color: white;
+    -fx-border-color: navy;
+    -fx-border-radius: 8;
+    -fx-text-fill: navy;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 18;
+    -fx-cursor: hand;
+}
+
+.denyButton:hover {
+    -fx-background-color: #f2f2f2;
+}
+
+.arrowButton {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 10;
+    -fx-cursor: hand;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+}
+
+.requestsScrollPane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.requestsScrollPane .viewport {
+    -fx-background-color: transparent;
+}
+
+.readOnlyArea {
+    -fx-opacity: 0.8;
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #DCDCDC;
+}
+
+.readOnlyArea .content {
+    -fx-background-color: #f4f4f4;
+}
+
+.readOnlyArea:focused {
+    -fx-border-color: #DCDCDC;
+}
+
+.popupBox {
+    -fx-background-color: #DDE1EB;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+}
+
+.errorLabel {
+    -fx-text-fill: #d32f2f;
+    -fx-font-size: 16px;
+    -fx-padding: 2 0 0 0;
+}
