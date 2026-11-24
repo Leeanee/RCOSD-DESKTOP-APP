@@ -307,15 +307,15 @@ INSERT INTO person ( lastName, firstName, middleName) VALUES ('Ignacio', 'Edgard
 INSERT INTO person ( lastName, firstName, middleName) VALUES ('Lacsamana', 'Norma', 'Navarro');
 
 insert into login (personID, username, password, join_date, last_login_date, role, authorities, is_active, is_locked)
-values (1, 'admin', 'admin', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_ADMIN', 'user:read,user:create,user:update,user:delete', 1, 0);
+values (1, 'admin', '$2a$12$OqcqcSo/qsAyXsAByKiieOQ00e3UC7.RYW15aHWV0H4/ydGwcZAOq', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_ADMIN', 'user:read,user:create,user:update,user:delete', 1, 0);
 insert into login (personID,username, password, join_date, last_login_date, role, authorities, is_active, is_locked)
-values (9, 'prefect', '1234', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_PREFECT', 'user:read,user:create,user:update,user:delete', 1, 0);
+values (9, 'prefect', '$2a$12$OqcqcSo/qsAyXsAByKiieOQ00e3UC7.RYW15aHWV0H4/ydGwcZAOq', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_PREFECT', 'user:read,user:create,user:update,user:delete', 1, 0);
 insert into login (personID, username, password, join_date, last_login_date, role, authorities, is_active, is_locked)
-values (12, 'deptHead','1234', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_STAFF', 'user:read,user:create,user:update', 1, 0);
+values (12, 'deptHead','$2a$12$OqcqcSo/qsAyXsAByKiieOQ00e3UC7.RYW15aHWV0H4/ydGwcZAOq', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_STAFF', 'user:read,user:create,user:update', 1, 0);
 insert into login (personID, username, password, join_date, last_login_date, role, authorities, is_active, is_locked)
-values (2, 'user1','1234', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_USER', 'user:read,user:create,user:update', 1, 0);
+values (2, 'user1','$2a$12$OqcqcSo/qsAyXsAByKiieOQ00e3UC7.RYW15aHWV0H4/ydGwcZAOq', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_USER', 'user:read,user:create,user:update', 1, 0);
 insert into login (personID, username, password, join_date, last_login_date, role, authorities, is_active, is_locked)
-values (3, 'user2','1234', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_USER', 'user:read,user:create,user:update', 1, 0);
+values (3, 'user2','$2a$12$OqcqcSo/qsAyXsAByKiieOQ00e3UC7.RYW15aHWV0H4/ydGwcZAOq', to_timestamp('2024-01-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), to_timestamp('2024-10-01 00:00:00.00', 'yyyy-mm-dd hh24:mi:ss:ff'), 'ROLE_USER', 'user:read,user:create,user:update', 1, 0);
 
 INSERT INTO offense (offense, type, description) VALUES ('Vaping', 'Major Offense', 'Bringing vape');
 INSERT INTO offense (offense, type, description) VALUES ('Punching', 'Major Offense', 'Punching another student');
